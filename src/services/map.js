@@ -26,20 +26,20 @@ export default function initMap() {
 
   var markers = locations.map(function(location, i) {
     var marker = new google.maps.Marker({
+      disableAutoPan: true,
       position: location,
       icon: icons['marker'].icon,
       label: labels[i % labels.length]
     });
 
     marker.addListener('mouseover', function() {
-      disableAutoPan: true,
-        infoWindow.setContent(contentStrings[i % labels.length]),
-        infoWindow.open(map, marker);
+      infoWindow.setContent(contentStrings[i % labels.length])
+      infoWindow.open(map, marker);
     });
 
     return marker
   });
 
   var markerCluster = new window.MarkerClusterer(map, markers,
-    {imagePath: 'markerclusterer.png'});
+    {imagePath:'markerclusterer.png'});
 }
